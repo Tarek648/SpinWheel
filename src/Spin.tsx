@@ -149,7 +149,7 @@ const SpinningWheel: React.FC = () => {
         </div>
       )}
       
-      <div className="probability-info">
+      {/* <div className="probability-info">
         <h3>Prize Probabilities:</h3>
         <div className="probability-grid">
           {prizes.map(prize => (
@@ -167,7 +167,7 @@ const SpinningWheel: React.FC = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
