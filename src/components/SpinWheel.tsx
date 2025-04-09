@@ -272,26 +272,101 @@ export const SpinWheel: React.FC<ISpinWheelProps> = ({
   };
 
   return (
-    <div id='wheel'>
-      <canvas
-        id='canvas'
-        width={size * 2}
-        height={size * 2}
-        style={{
-          pointerEvents: isFinished && isOnlyOnce ? 'none' : 'auto',
-        }}
-      />
+    <div id='wheel' style={{ 
+      textAlign: 'center', 
+      padding: '20px',
+      maxWidth: '600px',
+      margin: '0 auto'
+    }}>
+      <h2 style={{ 
+        fontFamily: fontFamily, 
+        color: primaryColor,
+        marginBottom: '20px',
+        fontSize: '24px',
+        fontWeight: 'bold',
+        textShadow: '1px 1px 3px rgba(0,0,0,0.1)'
+      }}>
+        Spin to Win Amazing Prizes!
+      </h2>
+      
+      <div style={{ 
+        position: 'relative', 
+        display: 'inline-block',
+        margin: '20px 0'
+      }}>
+        <canvas
+          id='canvas'
+          width={size * 2}
+          height={size * 2}
+          style={{
+            pointerEvents: isFinished && isOnlyOnce ? 'none' : 'auto',
+            transition: 'transform 0.3s ease',
+            cursor: 'pointer',
+            opacity: isFinished && isOnlyOnce ? 0.8 : 1
+          }}
+        />
+      </div>
+      
       {showTextOnSpin && isStarted && (
         <div style={{
           textAlign: "center",
           padding: "20px",
           fontWeight: "bold",
-          fontSize: "1.5em",
-          fontFamily: fontFamily
+          fontSize: "24px",
+          fontFamily: fontFamily,
+          color: primaryColor,
+          margin: '20px 0',
+          minHeight: '60px',
+          background: 'rgba(255,255,255,0.9)',
+          borderRadius: '10px',
+          boxShadow: '0 4px 10px rgba(0,0,0,0.1)'
         }}>
-          {needleText}
+          {needleText && `You won: ${needleText}!`}
         </div>
       )}
+      
+      <button 
+        onClick={spin} 
+        disabled={isFinished && isOnlyOnce}
+        style={{
+          padding: '15px 40px',
+          fontSize: '18px',
+          fontWeight: 'bold',
+          backgroundColor: primaryColor,
+          color: contrastColor,
+          border: 'none',
+          borderRadius: '50px',
+          cursor: (isFinished && isOnlyOnce) ? 'not-allowed' : 'pointer',
+          transition: 'all 0.3s',
+          boxShadow: '0 4px 10px rgba(0,0,0,0.2)',
+          opacity: (isFinished && isOnlyOnce) ? 0.6 : 1,
+          margin: '20px 0'
+        }}
+        onMouseEnter={e => {
+          if (!(isFinished && isOnlyOnce)) {
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 6px 15px rgba(0,0,0,0.3)';
+          }
+        }}
+        onMouseLeave={e => {
+          e.currentTarget.style.transform = '';
+          e.currentTarget.style.boxShadow = '0 4px 10px rgba(0,0,0,0.2)';
+        }}
+      >
+        {isFinished && isOnlyOnce ? 'Already Spun' : buttonText}
+      </button>
+      
+      <div style={{ 
+        marginTop: '30px',
+        fontFamily: fontFamily,
+        color: '#7f8c8d',
+        fontSize: '14px',
+        background: 'rgba(255,255,255,0.8)',
+        padding: '15px',
+        borderRadius: '8px'
+      }}>
+        <p>Probability: iPhone (1%), $100 (10%), $50 (15%), Discount (30%), Free Spin (44%)</p>
+      </div>
     </div>
   );
 };
