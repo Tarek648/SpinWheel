@@ -236,7 +236,8 @@ export const SpinWheel: React.FC<ISpinWheelProps> = ({
   };
 
   const drawNeedle = () => {
-    if (!canvasContext) return;
+      if (!canvasContext) return;
+      console.log("drawNeedle called");
     const ctx = canvasContext;
     ctx.lineWidth = 1;
     ctx.strokeStyle = contrastColor;
