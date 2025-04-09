@@ -25,7 +25,7 @@ function App() {
     primaryColor: 'black',
     contrastColor: 'white',
     buttonText: 'Spin',
-    isOnlyOnce: false,
+    isOnlyOnce: true,
     size: 290,
     upDuration: 100,
     downDuration: 600,
